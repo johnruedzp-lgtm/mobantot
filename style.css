@@ -1,0 +1,599 @@
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+  -webkit-tap-highlight-color:transparent;
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  background:#050914;
+  font-family:Arial,Helvetica,sans-serif;
+  color:white;
+}
+
+button{
+  font-family:inherit;
+  cursor:pointer;
+}
+
+.hidden{
+  display:none!important;
+}
+
+.screen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  background:
+    radial-gradient(circle at 50% 40%,#163c4e 0,#07151e 45%,#03050a 100%);
+  z-index:50;
+}
+
+.logo{
+  font-size:clamp(25px,5vw,55px);
+  font-weight:900;
+  letter-spacing:5px;
+  text-shadow:0 0 30px #25e0ff;
+  margin-bottom:25px;
+}
+
+.loadingBar{
+  width:min(420px,70vw);
+  height:8px;
+  background:#17222d;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.loadingBar span{
+  display:block;
+  width:0%;
+  height:100%;
+  background:linear-gradient(90deg,#00d9ff,#72ffbb);
+  box-shadow:0 0 20px #00eaff;
+}
+
+#loading p{
+  margin-top:12px;
+  opacity:.6;
+}
+
+.menuGlow{
+  position:absolute;
+  width:500px;
+  height:500px;
+  border-radius:50%;
+  background:#00d9ff;
+  filter:blur(180px);
+  opacity:.12;
+}
+
+#menu h1{
+  position:relative;
+  text-align:center;
+  font-size:clamp(42px,8vw,90px);
+  line-height:.9;
+  font-weight:1000;
+  letter-spacing:3px;
+}
+
+#menu h1 span{
+  color:#55edc0;
+  text-shadow:0 0 25px #00ffbb;
+}
+
+.subtitle{
+  margin-top:20px;
+  letter-spacing:7px;
+  opacity:.65;
+}
+
+.mainBtn{
+  margin-top:35px;
+  padding:16px 40px;
+  border:1px solid #57e9ca;
+  border-radius:8px;
+  color:white;
+  background:linear-gradient(135deg,#0d635d,#123d52);
+  box-shadow:0 0 30px #00cdb044;
+  font-size:16px;
+  font-weight:900;
+  letter-spacing:2px;
+  transition:.2s;
+}
+
+.mainBtn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 35px #00e8bd88;
+}
+
+#heroSelect{
+  justify-content:flex-start;
+  padding:35px 20px;
+  overflow:auto;
+}
+
+#heroSelect h2{
+  font-size:32px;
+  margin-top:20px;
+}
+
+.hint{
+  opacity:.6;
+  margin:8px 0 25px;
+}
+
+#heroGrid{
+  width:min(1100px,95vw);
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.heroCard{
+  min-height:170px;
+  padding:15px;
+  border:1px solid #ffffff20;
+  border-radius:14px;
+  background:linear-gradient(145deg,#101d2b,#09111c);
+  position:relative;
+  overflow:hidden;
+  transition:.2s;
+}
+
+.heroCard:hover{
+  transform:translateY(-5px);
+  border-color:#6ffff0;
+}
+
+.heroCard.selected{
+  border:2px solid #65f7d4;
+  box-shadow:0 0 25px #24e8c855;
+}
+
+.heroOrb{
+  width:58px;
+  height:58px;
+  border-radius:50%;
+  margin:auto;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-weight:1000;
+  font-size:24px;
+  border:3px solid #ffffff77;
+  box-shadow:0 0 25px currentColor;
+}
+
+.heroCard h3{
+  text-align:center;
+  margin-top:10px;
+}
+
+.heroCard .role{
+  text-align:center;
+  font-size:11px;
+  color:#6fffe0;
+  margin-top:4px;
+}
+
+.heroCard p{
+  font-size:10px;
+  opacity:.6;
+  text-align:center;
+  margin-top:7px;
+}
+
+#game{
+  position:absolute;
+  inset:0;
+  background:#07150d;
+}
+
+#gameCanvas{
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  touch-action:none;
+}
+
+#topHUD{
+  position:absolute;
+  top:10px;
+  left:50%;
+  transform:translateX(-50%);
+  display:flex;
+  align-items:center;
+  gap:25px;
+  background:#07101dcc;
+  padding:7px 18px;
+  border:1px solid #ffffff18;
+  border-radius:20px;
+  pointer-events:none;
+  font-size:13px;
+}
+
+.team{
+  font-weight:900;
+}
+
+.blueTeam{
+  color:#57dfff;
+}
+
+.redTeam{
+  color:#ff6677;
+}
+
+#matchTime{
+  color:#ddd;
+  min-width:45px;
+  text-align:center;
+}
+
+#playerHUD{
+  position:absolute;
+  left:15px;
+  bottom:15px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:9px;
+  background:#050b12dd;
+  border:1px solid #ffffff1c;
+  border-radius:12px;
+  min-width:290px;
+}
+
+#portrait{
+  width:58px;
+  height:58px;
+  border-radius:10px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background:#173444;
+  border:2px solid #63ead1;
+  font-size:25px;
+  font-weight:900;
+  position:relative;
+}
+
+#portrait small{
+  position:absolute;
+  bottom:-5px;
+  right:-5px;
+  background:#071018;
+  border:1px solid #55d9c1;
+  border-radius:8px;
+  padding:2px 4px;
+  font-size:9px;
+}
+
+.bars{
+  width:170px;
+}
+
+.hpBar,.manaBar,.xpBar{
+  width:100%;
+  height:7px;
+  background:#17202a;
+  margin:4px 0;
+  border-radius:10px;
+  overflow:hidden;
+}
+
+.hpBar span{
+  display:block;
+  width:100%;
+  height:100%;
+  background:linear-gradient(90deg,#ff365d,#ff8961);
+}
+
+.manaBar span{
+  display:block;
+  width:100%;
+  height:100%;
+  background:#35bfff;
+}
+
+.xpBar{
+  height:4px;
+}
+
+.xpBar span{
+  display:block;
+  width:0%;
+  height:100%;
+  background:#a56dff;
+}
+
+.gold{
+  font-size:13px;
+  color:#ffd65a;
+}
+
+.items{
+  display:flex;
+  gap:4px;
+}
+
+.itemSlot{
+  width:31px;
+  height:31px;
+  border:1px solid #ffffff22;
+  background:#0c1520;
+  border-radius:5px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  font-size:10px;
+}
+
+#skillHUD{
+  position:absolute;
+  right:20px;
+  bottom:18px;
+  display:flex;
+  align-items:end;
+  gap:9px;
+}
+
+.skill,#attackBtn{
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  border:2px solid #ffffff33;
+  background:radial-gradient(circle,#173a4b,#08121b);
+  color:white;
+  position:relative;
+  box-shadow:0 0 15px #000;
+}
+
+.skill b{
+  font-size:20px;
+}
+
+.skill span{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:12px;
+  color:#fff;
+  border-radius:50%;
+  background:#0008;
+}
+
+.skill.ready{
+  border-color:#65ffe0;
+  box-shadow:0 0 20px #00e8bd66;
+}
+
+.ultimate{
+  width:72px;
+  height:72px;
+  border-color:#d69cff;
+}
+
+#attackBtn{
+  width:76px;
+  height:76px;
+  font-size:30px;
+  background:radial-gradient(circle,#6b2935,#21121a);
+  border-color:#ff6b75;
+}
+
+#shopToggle{
+  position:absolute;
+  right:20px;
+  top:65px;
+  background:#101b25dd;
+  border:1px solid #ffffff25;
+  color:#ffd45d;
+  padding:8px 14px;
+  border-radius:8px;
+  font-weight:900;
+}
+
+#shop{
+  position:absolute;
+  right:20px;
+  top:105px;
+  width:220px;
+  background:#07101eee;
+  border:1px solid #ffffff20;
+  padding:10px;
+  border-radius:10px;
+  display:none;
+}
+
+#shop.open{
+  display:block;
+}
+
+.shopTitle{
+  text-align:center;
+  font-weight:900;
+  color:#ffd45d;
+  padding-bottom:8px;
+}
+
+.shopItem{
+  padding:10px;
+  border-top:1px solid #ffffff15;
+  cursor:pointer;
+}
+
+.shopItem:hover{
+  background:#ffffff0b;
+}
+
+.shopItem b,
+.shopItem span,
+.shopItem strong{
+  display:block;
+}
+
+.shopItem span{
+  font-size:11px;
+  opacity:.6;
+  margin:3px 0;
+}
+
+.shopItem strong{
+  color:#ffd45d;
+}
+
+#minimap{
+  position:absolute;
+  right:15px;
+  bottom:15px;
+  width:190px;
+  height:190px;
+  border:2px solid #ffffff44;
+  border-radius:10px;
+  background:#07150d;
+}
+
+#joystick{
+  display:none;
+  position:absolute;
+  left:25px;
+  bottom:100px;
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  background:#ffffff12;
+  border:2px solid #ffffff20;
+}
+
+#stick{
+  width:55px;
+  height:55px;
+  border-radius:50%;
+  background:#65e5d0aa;
+  border:2px solid #b8fff4;
+  position:absolute;
+  left:37px;
+  top:37px;
+}
+
+#notification{
+  position:absolute;
+  top:80px;
+  left:50%;
+  transform:translateX(-50%);
+  color:#fff;
+  font-weight:900;
+  text-shadow:0 2px 5px black;
+  pointer-events:none;
+}
+
+#deathScreen{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  background:#21000a66;
+  z-index:20;
+  pointer-events:none;
+}
+
+#deathScreen h2{
+  color:#ff536d;
+  font-size:38px;
+  text-shadow:0 0 25px red;
+}
+
+#deathScreen p{
+  margin-top:10px;
+}
+
+#resultScreen{
+  position:absolute;
+  inset:0;
+  z-index:100;
+  background:#020611dd;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+}
+
+#resultTitle{
+  font-size:70px;
+  text-shadow:0 0 35px currentColor;
+}
+
+#resultText{
+  opacity:.7;
+  margin-top:10px;
+}
+
+@media(max-width:900px){
+
+  #heroGrid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .heroCard{
+    min-height:135px;
+  }
+
+  .heroCard p{
+    display:none;
+  }
+
+  #playerHUD{
+    bottom:10px;
+    left:8px;
+    min-width:220px;
+    transform:scale(.82);
+    transform-origin:left bottom;
+  }
+
+  #skillHUD{
+    right:8px;
+    bottom:10px;
+    gap:4px;
+    transform:scale(.72);
+    transform-origin:right bottom;
+  }
+
+  #minimap{
+    width:125px;
+    height:125px;
+    right:8px;
+    bottom:155px;
+  }
+
+  #joystick{
+    display:block;
+  }
+
+  #shopToggle{
+    top:48px;
+    right:8px;
+  }
+
+  #shop{
+    top:88px;
+    right:8px;
+  }
+
+  #topHUD{
+    top:5px;
+  }
+}
