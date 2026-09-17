@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+  <title>Legends of Barangay</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="loading">
+  <div class="logo">LEGENDS OF BARANGAY</div>
+  <div class="loadingBar"><span id="loadProgress"></span></div>
+  <p>Loading battlefield...</p>
+</div>
+
+<div id="menu" class="screen hidden">
+  <div class="menuGlow"></div>
+  <h1>LEGENDS OF<br><span>BARANGAY</span></h1>
+  <p class="subtitle">THE BATTLE FOR THE ISLAND</p>
+  <button id="playBtn" class="mainBtn">ENTER BATTLE</button>
+</div>
+
+<div id="heroSelect" class="screen hidden">
+  <h2>CHOOSE YOUR HERO</h2>
+  <p class="hint">Select a hero to enter the battlefield</p>
+  <div id="heroGrid"></div>
+  <button id="deployBtn" class="mainBtn">DEPLOY HERO</button>
+</div>
+
+<div id="game" class="hidden">
+
+  <canvas id="gameCanvas"></canvas>
+
+  <div id="topHUD">
+    <div class="team blueTeam">BLUE <b id="blueKills">0</b></div>
+    <div id="matchTime">00:00</div>
+    <div class="team redTeam"><b id="redKills">0</b> RED</div>
+  </div>
+
+  <div id="playerHUD">
+    <div id="portrait">
+      <span id="heroInitial">B</span>
+      <small id="level">Lv.1</small>
+    </div>
+
+    <div class="bars">
+      <div class="hpBar"><span id="hpFill"></span></div>
+      <div class="manaBar"><span id="manaFill"></span></div>
+      <div class="xpBar"><span id="xpFill"></span></div>
+    </div>
+
+    <div class="gold">🪙 <span id="gold">500</span></div>
+
+    <div class="items">
+      <div class="itemSlot" id="item0"></div>
+      <div class="itemSlot" id="item1"></div>
+      <div class="itemSlot" id="item2"></div>
+    </div>
+  </div>
+
+  <div id="skillHUD">
+    <button class="skill" id="skillQ"><b>Q</b><span></span></button>
+    <button class="skill" id="skillW"><b>W</b><span></span></button>
+    <button class="skill" id="skillE"><b>E</b><span></span></button>
+    <button class="skill ultimate" id="skillR"><b>R</b><span></span></button>
+    <button id="attackBtn">⚔</button>
+  </div>
+
+  <button id="shopToggle">SHOP</button>
+
+  <div id="shop">
+    <div class="shopTitle">ITEM SHOP</div>
+    <div class="shopItem" data-item="blade">
+      <b>⚔ BLADE</b>
+      <span>+35 Attack</span>
+      <strong>500G</strong>
+    </div>
+    <div class="shopItem" data-item="aegis">
+      <b>🛡 AEGIS</b>
+      <span>+350 HP</span>
+      <strong>600G</strong>
+    </div>
+    <div class="shopItem" data-item="boots">
+      <b>👟 BOOTS</b>
+      <span>+45 Speed</span>
+      <strong>450G</strong>
+    </div>
+  </div>
+
+  <canvas id="minimap"></canvas>
+
+  <div id="joystick">
+    <div id="stick"></div>
+  </div>
+
+  <div id="notification"></div>
+
+  <div id="deathScreen" class="hidden">
+    <h2>YOU HAVE FALLEN</h2>
+    <p>Respawning in <b id="respawnTimer">8</b></p>
+  </div>
+
+  <div id="resultScreen" class="hidden">
+    <h1 id="resultTitle">VICTORY</h1>
+    <p id="resultText"></p>
+    <button class="mainBtn" onclick="location.reload()">PLAY AGAIN</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
